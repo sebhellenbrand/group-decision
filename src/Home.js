@@ -30,7 +30,6 @@ class Home extends Component {
           onClick={e => (e.target.placeholder = "")}
           onBlur={e => (e.target.placeholder = "Number of participants")}
           onKeyPress={this.handleKeyPress}
-          onChange={this.handleChange}
           type="number"
           placeholder="Number of participants"
           value={this.state.numberOfParticipants}
