@@ -14,12 +14,13 @@ class Home extends Component {
   };
 
   handleButtonClick = () => {
+    this.props.changeNumberOfParticipants(this.state.numberOfParticipants);
     this.props.history.push("/tasks");
   };
 
   handleKeyPress = event => {
     if (event.key === "Enter") {
-      this.handleButtonClick();
+      this.handleButtonClick(event);
     }
   };
 
@@ -29,6 +30,7 @@ class Home extends Component {
         <CenteredInput
           onClick={e => (e.target.placeholder = "")}
           onBlur={e => (e.target.placeholder = "Number of participants")}
+          onChange={this.handleChange}
           onKeyPress={this.handleKeyPress}
           type="number"
           placeholder="Number of participants"

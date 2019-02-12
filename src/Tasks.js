@@ -8,9 +8,14 @@ const Row = props => {
   return (
     <tr>
       <th>
-        <input
+        <CenteredInput
           id={props.i}
-          style={{ marginTop: "10px" }}
+          style={{
+            marginTop: "10px",
+            display: "initial",
+            border: "2px solid #C8CCD4"
+          }}
+          onBlur={props.handleBlur}
           onChange={props.handleCorrect}
           value={props.arrayWithTasks[props.i]}
         />
@@ -34,6 +39,7 @@ const ListUnit = props => {
           handleCorrect={props.handleCorrect}
           handleTrashcanClick={props.handleTrashcanClick}
           arrayWithTasks={props.arrayWithTasks}
+          handleBlur={props.handleBlur}
           i={i}
         />
       </tbody>
@@ -78,6 +84,12 @@ export default class Tasks extends Component {
     this.setState({ arrayWithTasks: list });
   };
 
+  handleBlur = event => {
+    if (event.target.value === "") {
+      this.handleTrashcanClick(event);
+    }
+  };
+
   handleCorrect = event => {
     var array = this.state.arrayWithTasks.slice();
     array[event.target.id] = event.target.value;
@@ -90,7 +102,9 @@ export default class Tasks extends Component {
         <StyledDiv>
           <CenteredInput
             onClick={e => (e.target.placeholder = "")}
-            onBlur={e => (e.target.placeholder = "Enter your options")}
+            onBlur={e => {
+              e.target.placeholder = "Enter your options";
+            }}
             placeholder={"Enter your options"}
             style={{ display: "inline-block" }}
             onChange={this.handleChange}
@@ -109,6 +123,7 @@ export default class Tasks extends Component {
             arrayWithTasks={this.state.arrayWithTasks}
             handleCorrect={this.handleCorrect}
             handleTrashcanClick={this.handleTrashcanClick}
+            handleBlur={this.handleBlur}
           />
         </StyledDiv>
       </div>
@@ -126,7 +141,7 @@ const StyledDiv = styled.div`
 const StyledImg = styled.img`
   height: 29px;
   margin-left: 10px;
-  vertical-align: bottom;
+  vertical-align: middle;
   webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
   :hover {

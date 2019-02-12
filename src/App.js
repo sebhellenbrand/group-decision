@@ -10,6 +10,7 @@ class App extends Component {
 
   changeNumberOfParticipants = event => {
     this.setState({ numberOfParticipants: event });
+    console.log(this.state.numberOfParticipants);
   };
 
   render() {
@@ -19,7 +20,12 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={({ history }) => <Home history={history} />}
+            render={({ history }) => (
+              <Home
+                changeNumberOfParticipants={this.changeNumberOfParticipants}
+                history={history}
+              />
+            )}
           />
           <Route
             exact
