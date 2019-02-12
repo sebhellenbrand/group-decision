@@ -1,62 +1,64 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
+import StyledButton from "./atoms/StyledButton";
 
-export default class Home extends Component {
+class Home extends Component {
+  state = {
+    numberOfParticipants: ""
+  };
 
-    state = {
-        numberOfParticipants:"",
-        hoveredStyle : {
-            background:'white',
-        }
-        
+  handleChange = event => {
+    if (event.target.value >= 0) {
+      this.setState({ numberOfParticipants: event.target.value });
     }
+  };
 
-    handleChange = (event) =>{
-        if(event.target.value>=0){
-        this.setState({numberOfParticipants:event.target.value})
-        }
-    }
+  handleButtonClick = () => {
+    this.props.history.push("/tasks");
+  };
 
-    handleButtonClick = () =>{
-        this.props.history.push("/tasks")
+  handleKeyPress = event => {
+    if (event.key === "Enter") {
+      this.handleButtonClick();
     }
-
-    isHovered = () =>{
-        this.setState({hoveredStyle:{background:'#e7e7e7'}})
-    }
-
-    isNotHovered = () => {
-        this.setState({hoveredStyle:{background:'white'}})
-    }
-
-    handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            this.handleButtonClick();
-          }
-    }
+  };
 
   render() {
     return (
-            <StyledDiv>
-                <CenteredInput onKeyPress={this.handleKeyPress} onChange={this.handleChange} type="number" placeholder="Number of participants" value={this.state.numberOfParticipants}/>
-                <CenteredButton style={this.state.hoveredStyle} onMouseLeave={this.isNotHovered} onMouseEnter={this.isHovered} onClick={this.handleButtonClick}>Get Started!</CenteredButton>
-            </StyledDiv>
-        );
+      <StyledDiv>
+        <CenteredInput
+          onClick={e => (e.target.placeholder = "")}
+          onBlur={e => (e.target.placeholder = "Number of participants")}
+          onKeyPress={this.handleKeyPress}
+          onChange={this.handleChange}
+          type="number"
+          placeholder="Number of participants"
+          value={this.state.numberOfParticipants}
+        />
+        <StyledButton
+          onClick={this.handleButtonClick}
+          buttonText="Get Started!"
+        />
+      </StyledDiv>
+    );
   }
-
 }
 
+export default Home;
+
 const StyledDiv = styled.div`
-    margin-top:20%;
+  margin-top: 20%;
 `;
 
-const CenteredInput = styled.input`
+export const CenteredInput = styled.input`
     width:250px;
     text-align:center;
     margin-left:auto;
     margin-right:auto;
     display:block;
     border:solid
+    webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
 
     border: 0
     font-family: inherit
@@ -69,23 +71,3 @@ const CenteredInput = styled.input`
     border-radius: 0
     color: #223254
 `;
-
-const CenteredButton = styled.button`
-    margin-left:auto;
-    margin-right:auto;
-    margin-top:10px;
-    display:block;
-
-    hover:
-
-    webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    background-color: white;
-    color: black;
-    border: 2px solid #e7e7e7;
-
-    padding: 15px 32px;
-    text-align: center;
-
-`;
-
