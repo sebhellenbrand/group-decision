@@ -2,15 +2,25 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./Home";
 import Tasks from "./Tasks";
+import Decision from "./Decision";
 
 class App extends Component {
   state = {
-    numberOfParticipants: 0
+    numberOfParticipants: 0,
+    arrayWithTasks: [],
+    tasksWithCountArray: []
+  };
+
+  changeArrayWithTasks = event => {
+    this.setState({ arrayWithTasks: event });
   };
 
   changeNumberOfParticipants = event => {
     this.setState({ numberOfParticipants: event });
-    console.log(this.state.numberOfParticipants);
+  };
+
+  changeTasksWithCountArray = event => {
+    this.setState({ tasksWithCountArray: event });
   };
 
   render() {
@@ -33,7 +43,19 @@ class App extends Component {
             render={({ history }) => (
               <Tasks
                 history={history}
+                changeArrayWithTasks={this.changeArrayWithTasks}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/decide"
+            render={({ history }) => (
+              <Decision
+                changeTasksWithCountArray={this.changeTasksWithCountArray}
+                arrayWithTasks={this.state.arrayWithTasks}
                 numberOfParticipants={this.state.numberOfParticipants}
+                history={history}
               />
             )}
           />

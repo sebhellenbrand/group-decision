@@ -25,5 +25,6 @@ const CenteredButton = styled.button`
   text-align: center;
   :hover {
     background-color: #e7e7e7;
+    cursor: pointer;
   }
 `;

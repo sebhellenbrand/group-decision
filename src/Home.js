@@ -28,6 +28,7 @@ class Home extends Component {
     return (
       <StyledDiv>
         <CenteredInput
+          autoFocus="true"
           onClick={e => (e.target.placeholder = "")}
           onBlur={e => (e.target.placeholder = "Number of participants")}
           onChange={this.handleChange}
