@@ -81,7 +81,7 @@ export default class Decision extends Component {
   };
 
   handleArrowClick = () => {
-    if (this.state.currentPerson < this.props.numberOfParticipants) {
+    if (this.state.currentPerson <= this.props.numberOfParticipants) {
       for (var i = 0; i < this.props.arrayWithTasks.length; i++) {
         if (this.state.arrayWithDecisions[i]) {
           let localarrayWithTasksAndCount = this.state.arrayWithTasksAndCount;
@@ -152,7 +152,7 @@ const StyledDiv = styled.div`
   text-align: center;
 `;
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   line-height: 50px;
 
   z-index: -1;
@@ -173,12 +173,11 @@ const StyledLabel = styled.label`
     border: 2px solid #C8CCD4
     background: none
     border-radius: 0
-    background-color: #5BBA53
 
     :hover {
     cursor: pointer;
     transition-duration: 0s;
 
-    background-color: #2ed620;
+    background-color: #e7e7e7;
   }
 `;

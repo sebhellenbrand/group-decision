@@ -127,8 +127,8 @@ export default class Tasks extends Component {
     var list = this.state.arrayWithTasks.slice();
     var index = event.target.id;
     list.splice(index, 1);
-    console.log(index);
     this.setState({ arrayWithTasks: list });
+    this.props.changeArrayWithTasks(list);
   };
 
   handleBlur = event => {
@@ -161,6 +161,7 @@ export default class Tasks extends Component {
     var array = this.state.arrayWithTasks.slice();
     array[event.target.id] = event.target.value;
     this.setState({ arrayWithTasks: array });
+    this.props.changeArrayWithTasks(array);
   };
 
   render() {

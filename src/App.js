@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./Home";
 import Tasks from "./Tasks";
 import Decision from "./Decision";
+import Result from "./Result";
 
 class App extends Component {
   state = {
@@ -55,6 +56,16 @@ class App extends Component {
                 changeTasksWithCountArray={this.changeTasksWithCountArray}
                 arrayWithTasks={this.state.arrayWithTasks}
                 numberOfParticipants={this.state.numberOfParticipants}
+                history={history}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/result"
+            render={({ history }) => (
+              <Result
+                tasksWithCountArray={this.state.tasksWithCountArray}
                 history={history}
               />
             )}
