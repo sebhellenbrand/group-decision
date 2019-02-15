@@ -91,12 +91,14 @@ export default class Tasks extends Component {
       });
       this.props.changeArrayWithTasks(localArrayWithTasks);
       if (this.state.toastAlreadyShown === false) {
-        this.setState({
-          toastAlreadyShown: true,
-          styleOfToast: {
-            opacity: "1"
-          }
-        });
+        setTimeout(() => {
+          this.setState({
+            toastAlreadyShown: true,
+            styleOfToast: {
+              opacity: "1"
+            }
+          });
+        }, 1000);
         setTimeout(() => {
           this.setOpacityToZero();
         }, 4000);

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { StyledImg } from "./Tasks";
+import refresh from "./img/refresh.png";
 
 const ListUnit = props => {
   var rows = [];
@@ -21,6 +23,15 @@ const ListUnit = props => {
       </div>
     );
   }
+
+  rows.push(
+    <StyledImg
+      onClick={props.handleRefreshClick}
+      style={{ float: "right", marginTop: "15px", marginRight: "12px" }}
+      src={refresh}
+      alt="arrow"
+    />
+  );
 
   return (
     <table style={{ marginLeft: "auto", marginRight: "auto" }}>
@@ -57,11 +68,18 @@ export default class Result extends Component {
     this.setState({ tasksWithCountArray: array });
   };
 
+  handleRefreshClick = () => {
+    this.props.history.push("/");
+  };
+
   render() {
     return (
       <StyledDiv>
         <div>Votes:</div>
-        <ListUnit tasksWithCountArray={this.state.tasksWithCountArray} />
+        <ListUnit
+          handleRefreshClick={this.handleRefreshClick}
+          tasksWithCountArray={this.state.tasksWithCountArray}
+        />
       </StyledDiv>
     );
   }
