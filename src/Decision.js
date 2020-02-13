@@ -9,7 +9,7 @@ const ListUnit = props => {
   for (var i = 0; i < props.arrayWithTasks.length; i++) {
     var localStyle = { backgroundColor: "#5BBA53" };
     if (props.arrayWithDecisions[i]) {
-      localStyle = { backgroundColor: "#00CED1" };
+      localStyle = { backgroundColor: "#ffff00" };
     }
 
     rows.push(
