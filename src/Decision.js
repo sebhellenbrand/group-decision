@@ -9,7 +9,7 @@ const ListUnit = props => {
   for (var i = 0; i < props.arrayWithTasks.length; i++) {
     var localStyle = { backgroundColor: "#5BBA53" };
     if (props.arrayWithDecisions[i]) {
-      localStyle = { backgroundColor: "#2ed620" };
+      localStyle = { backgroundColor: "#00CED1" };
     }
 
     rows.push(
@@ -31,13 +31,9 @@ const ListUnit = props => {
   );
 
   rows.push(
-    <StyledImg
-      onClick={props.handleArrowClick}
-      key={"arrow"}
-      style={{ float: "right", marginTop: "10px" }}
-      src={arrow}
-      alt="arrow"
-    />
+    <StyledLabel onClick={props.handleArrowClick} key={"arrow"}>
+      Done
+    </StyledLabel>
   );
 
   return (

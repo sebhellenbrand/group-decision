@@ -15,7 +15,9 @@ class Home extends Component {
 
   handleButtonClick = () => {
     this.props.changeNumberOfParticipants(this.state.numberOfParticipants);
-    this.props.history.push("/tasks");
+    if(this.state.numberOfParticipants > 0) {
+      this.props.history.push("/tasks");
+    }
   };
 
   handleKeyPress = event => {
@@ -58,18 +60,19 @@ export const CenteredInput = styled.input`
     margin-left:auto;
     margin-right:auto;
     display:block;
-    border:solid
+    border:solid;
     webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
+    outline: none;
 
-    border: 0
-    font-family: inherit
-    padding: 0px 0
-    height: 48px
-    font-size: 16px
-    font-weight: 500
-    border-bottom: 2px solid #C8CCD4
-    background: none
-    border-radius: 0
-    color: #223254
+    border: 0;
+    font-family: inherit;
+    padding: 0px 0;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 2px solid #C8CCD4;
+    background: none;
+    border-radius: 0;
+    color: #223254;
 `;
